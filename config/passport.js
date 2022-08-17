@@ -1,31 +1,68 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-//Require your User Model here!
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+const User = require('../models/user');
+// plug in to Oauth Strategy, and provide VERIFY callback function, 
+// this function will be called whenever a user logs in using Oauth
+passport.use(
+	new GoogleStrategy(
+		{
+		 clientID: process.env.GOOGLE_CLIENT_ID,
+		 clientSecret: process.env.GOOGLE_SECRET,
+		 callbackURL: process.env.GOOGLE_CALLBACK
+		},
+		async function(accessToken, refreshToken, profile, cb){ // verify callback that gets invoked every single time someone logs in
+			// the use has logged in
+			// profile, <- this is the stuff we want, aka the infromation about the user
+			// you should probably console.log it 
+			console.log(profile, " <- this is the profile from google")
+			
+			// Step 1, Check if the user exist in the database!
+			// if the do, provide that user document to the passport!
+			const user = await User.findOne({googleId: profile.id});
+			// if User.findOne finds nothing, user will be undefined
 
-// configuring Passport!
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    // a user has logged in via OAuth!
-    // refer to the lesson plan from earlier today in order to set this up
+			// cb(error, dataThatYouWantToPassToPassport)
+			if(user) return cb(null, user);
+			// end of step 1 ==========================================
 
-  }
-));
+			// So the User doens't exist in the database, 
+			// which means we have a new user, so we have to add them to the database!
+			try {
+				const newUser = await User.create({
+					name: profile.displayName,
+					googleId: profile.id,
+					email: profile.emails[0].value, // <- this give us the email
+					avatar: profile.photos[0].value //< - the hosted image string/link
+				})
+				// pass the newUser document to passport!
+				return cb(null, newUser)
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+			} catch(err){
+				// cb(error, dataThatYouWantToPassToPassport)
+				return cb(err)
+			}
+		}
+	)
+)
 
-passport.deserializeUser(function(id, done) {
 
-  // Find your User, using your model, and then call done(err, whateverYourUserIsCalled)
-  // When you call this done function passport assigns the user document to req.user, which will 
-  // be availible in every Single controller function, so you always know the logged in user
+// serializeUser, return the data theat passport is going to add to the session (cookie!) to track the user
+// this function is called after the verify callback function ^ the thing above
 
-});
+// user argument is coming from above, cb(null, newUser), cb(null, user)
+passport.serializeUser(function(user, cb){
+	cb(null, user._id); // <- storing in our session cookie the logged in users id
+})
+
+// desererialzieUser method is called every time a request comes in from a logged in user!
+// THIS IS WHERE THE PASSPORT ASSIGNS THE USER DOCUMENT TO req.user, so in every single function we have access 
+// to req.user which is the logged in users mongoose document!
+passport.deserializeUser(function(userId, cb){
+	User.findById(userId, function(err, userDocument){
+		if(err) return cb(err)
+		cb(null, userDocument);  // <- this assins the userDocument to req.user = userDocument
+	})
+})
 
 
 
