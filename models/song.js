@@ -4,15 +4,15 @@ const mongoose = require("mongoose");
 // what the documents (objects) in a mongodb collection (songs)
 // will all look like
 
-// Embed the Comments in the Movies
+// Embed the Comments in the Songs
 // One to many relationship
 // One Song has many Comments, Comment belongs to a Song
 const songSchema = new mongoose.Schema(
   {
-    content: String,
+    name: String,
+    artist: String,
     instrument: String,
-    lenght: Number,
-    bpm: Number,
+    length: Number,
     futurePerformance: Boolean,
     daysBeforePerformance: Number,
     sessionDuration: Number,

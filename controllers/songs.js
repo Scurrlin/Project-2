@@ -12,13 +12,10 @@ async function show(req, res) {
    
   try {
     // Song model is talking to the database to find the song with the id
-    const songDocument = await Song.findById(req.params.id)
-                                      .populate("artist")
-                                      .exec()
-
+    const songDocument = await Song.findById(req.params.id);
     res.render("songs/show", {
       title: "Song Name",
-      movie: songDocument,
+      song: songDocument,
     });
 
   } catch(err){
@@ -40,7 +37,7 @@ async function show(req, res) {
     // because this is after we got a response from the db that we
     // found all the songs
     res.render("songss/index.ejs", {
-      movies: allOfTheSongsInTheDatabase,
+      songs: allOfTheSongsInTheDatabase,
     }); // end of render
   });
 }
@@ -52,16 +49,10 @@ function newSong(req, res) {
 function create(req, res) {
   // log out what the function needs
   console.log(req.body);
-  // take teh contents of the form (req.body), and add it to our database
+  // take the contents of the form (req.body), and add it to our database
   req.body.futurePerformance = !!req.body.futurePerformance; // forces the value to a boolean
-  // remove whitespace next to commas, wierd syntax is a regular expression (regex)
-  // req.body.cast = req.body.cast.replace(/\s*,\s*/g, ',');
-  // // split if it's not an empty string
-  // if (req.body.cast) req.body.cast = req.body.cast.split(',');  // <- returns an array
-  // the callback function occurs after the database sends a respone
-  // back to our express server, and its send either an error object,
-  // or the document you created or were looking for as teh second argument
-  Song.create(req.body, function (err, movieSongCreatedInTheDatabase) {
+ 
+  Song.create(req.body, function (err, songCreatedInTheDatabase) {
     if (err) {
       console.log(err, " <- err in the songs create controller");
       return res.render("songs/new.ejs");
