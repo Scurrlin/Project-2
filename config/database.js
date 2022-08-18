@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // or it will create a movies database in mongodb
 mongoose.connect(process.env.DATABASE_URL);
 
+const db = mongoose.connection;
 
 // this will fire when mongoose (our express app)
 // has established a connecction with mongodb on port 27017
