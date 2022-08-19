@@ -1,7 +1,7 @@
 # YSBP-Journal
 A cheeky way to help musicians stay organized!
 
-![banner_image](https://i.imgur.com/eW1jT1o.png)
+![banner_image](https://i.imgur.com/pCFYG61.png)
 
 ## Getting Started
 
@@ -10,8 +10,8 @@ After signing in with your Google account, you can make use of the simplified UI
 
 ## Production Screenshots
 
-![Wireframe](https://i.imgur.com/wgGBZV5.png)
-![ERD](https://i.imgur.com/IylDhF2.png)
+![Wireframe](https://i.imgur.com/EKFKXLR.png)
+![ERD](https://i.imgur.com/5TVXF6h.png)
 
 ## Technologies Used
 * HTML
