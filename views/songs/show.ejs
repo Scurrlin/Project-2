@@ -1,73 +1,53 @@
 <%- include('../partials/header') %>
 
-  <section id="show-page">
-    <div>Title: </div>
-    <div>
-      <%= song.title %>
-    </div>
-    <div>Artist: </div>
-    <div>
-      <%= song.artist %>
-    </div>
-    <div>Instrument: </div>
-    <div>
-      <%= song.instrument %>
-    </div>
-    <div>Future Performance?: </div>
-    <div>
-      <%= song.futurePerformance ? 'Yes' : 'Nope' %>
-    </div>
-  
-  <% if (user) { %>
-    <br><br>
-    <h2>Comments</h2>
-    <form id="add-comment-form" method="POST" action="/songs/<%= song._id %>/comments">
-      <label>Comment:</label>
-      <textarea name="content"></textarea>
+<div class="container"></div>
+  <div class="row gx-5">
 
-      <input type="submit" value="Add Comment">
-    </form>
-    <% } %>
+    <div class="col-md-5">
+      <section id="show-page">
+        <h1 id="song"><%= song.song %></h1>
+        <h4 id="cat">Title: <%= song.title %></h4>
+        <br>
+        <form action="/songs/<%= song._id %>/?_method=DELETE" method="POST">
+            <button id="delete-btn" class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+        </form>
+        <a id="edit-btn" class="btn btn-outline-secondary btn-sm" href="/songs/<%= song._id %>/edit">Edit</a>
+      </section>
+      <br><br>
 
+      <h3>Song Rehearsal/h3>
+      <form id="song-rehearsal-form" method="POST" action="/songs/<%= song._id %>/rehearsals">
+          <div class="form-text">
+              <textarea class="form-control" rows="3" name="note" placeholder="Rehearsal Notes"></textarea>
+          </div>    
+          <br>
+              <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
 
-      <% if (song.comments.length) { %>
-        <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Date</th>
-              <th>Comment</th>
-              <th>Completed?</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let total = 0 %>
-            <% song.comments.forEach(function(r) { %>
-              <tr>
-                <td class="comment-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer" ><%= r.userName %></td>
-                <td><%= r.createdAt.toLocaleDateString() %></td>
-                <td><%= r.content %></td>
-                <td>
-                  <% if (user?._id.equals(r.user)) { %>
-                    <form action="/comments/<%= r._id %>?_method=DELETE" method="POST">
-                      <button type="submit">X</button>
-                    </form>
-                  <% } %>
-                </td>
-              </tr>
-         
-            <% }); %>
-            <tr>
-              <td colspan="3"></td>
-              <td><strong><%= (total / song.comments.length).toFixed(1) %></strong></td>
-            </tr>
-   
-          </tbody>
+    <div class="col-md-7">
+      <% if (song.song-rehearsal-form.length) { %>
+        <table id="show-tbl" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date:</th>
+                    <th scope="col">Notes:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% song.songRehearsal.forEach(function(s){ %> 
+                    <tr>
+                        <td scope="row"><%= s.createdAt.toLocaleDateString() %> </td>
+                        <td scope="row"><%= s.note %></td>
+                    </tr>
+                <%}); %> 
+            </tbody>
         </table>
-        
-        <% } else { %>
-          <h5>No Comments Yet</h5>
-          <% } %>
+  
+    <% } else { %> 
+        <h5>No rehearsals yet</h5>    
+    <% } %>  
+    </div>
+  </div>
 
-
-            <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>

@@ -1,18 +1,13 @@
 const mongoose = require('mongoose');
 
-const profileSchema = new mongoose.Schema(
-  {
+const profileSchema = new mongoose.Schema({
     name: String,
-    googleId: {
-      type: String,
-      required: true,
-    },
-    email: String,
     avatar: String,
-  },
-  {
-    timestamps: true,
-  }
-);
+    songs: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Songs'}
+    }, {
+      timestamps: true
+    });
 
 module.exports = mongoose.model('Profile', profileSchema);

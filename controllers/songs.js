@@ -1,68 +1,100 @@
-const Song = require("../models/song");
-// import our Song object which can perform crud operations
+const Song = require('../models/song');
+const Profile = require('../models/profile');
 
 module.exports = {
+  index,
   new: newSong,
   create,
-  index,
   show,
-};
+  delete: deleteSong,
+  edit: editSong,
+  update: updateSong
+}
 
-async function show(req, res) {
-   
+async function index(req, res) {
+
   try {
-    // Song model is talking to the database to find the song with the id
-    const songDocument = await Song.findById(req.params.id);
-    res.render("songs/show", {
-      title: "Song Name",
-      song: songDocument,
+    const songDocument = await Song.find({})
+    res.render('songs/songs.ejs', {
+      songs: songDocument
     });
 
   } catch(err){
-    res.send(err);
+    res.send(err)
   }
 };
 
-  function index(req, res) {
-  // List out the songs
-  Song.find({}, function (err, allOfTheSongsInTheDatabase) {
-    console.log(allOfTheSongsInTheDatabase, " <- all the songs");
-    if (err) {
-      res.send(
-        "You have an error trying to find the songs, check the terminal"
-      );
-    }
-
-    // response should be inside the callback,
-    // because this is after we got a response from the db that we
-    // found all the songs
-    res.render("songss/index.ejs", {
-      songs: allOfTheSongsInTheDatabase,
-    }); // end of render
-  });
-}
-
 function newSong(req, res) {
-  res.render("songs/new.ejs");
+  res.render('songs/new.ejs')
+  console.log(newSong, '<- new Song')
+};
+
+async function create(req, res) {
+  console.log(req.body)
+
+  try {
+    const songDocumentCreated = await Song.create(req.body)
+    console.log(songDocumentCreated, 'song document created in db')
+    res.redirect('/songs')
+  
+  } catch(err){
+    res.send(err)
+  }
 }
 
-function create(req, res) {
-  // log out what the function needs
-  console.log(req.body);
-  // take the contents of the form (req.body), and add it to our database
-  req.body.futurePerformance = !!req.body.futurePerformance; // forces the value to a boolean
- 
-  Song.create(req.body, function (err, songCreatedInTheDatabase) {
-    if (err) {
-      console.log(err, " <- err in the songs create controller");
-      return res.render("songs/new.ejs");
-    }
+async function deleteSong(req, res){
 
-    console.log(songDocumentCreatedInTheDatabase, " <- song created in db");
-    //normally redirect, but for testing
-    // the response is always inside of the callback of the Song model crud operation
-    // because we want to confirm with the database our action before we respond to the client
-    // aka the browser
-    res.redirect(`/songs/${songDocumentCreatedInTheDatabase._id}`);
-  });
+  try {
+    const song = await Song.findByIdAndRemove(req.params.id);
+    
+    res.redirect('/songs');
+
+  } catch(err) {
+    res.send(err)
+  }
+}
+
+async function show(req, res){
+  console.log(req.params.id, 'req.params.id')
+
+  try {
+    const songDocument = await Song.findById(req.params.id)
+    console.log(songDocument, '<- songDocument')
+
+    sortDateDescending = songDocument.songRehearsal.sort((a, b) => b.createdAt - a.createdAt);
+    
+    res.render('songs/show', {
+      song: songDocument,
+        
+    })
+
+  } catch(err){
+      res.send(err)
+  }
+}
+
+async function editSong(req, res){
+
+  try {
+    const songDocument = await Song.findById(req.params.id, req.body)
+    
+    res.render('songs/edit', {
+        song: songDocument
+      })
+
+  } catch(err){
+      res.send(err);
+  }
+};
+
+async function updateSong(req, res){
+    
+  try {
+    const songDocument = await Song.findByIdAndUpdate(req.params.id, req.body)
+
+    res.redirect(`/songs/${songDocument._id}`)
+
+  } catch(err){
+    res.send(err)
+  }
 }
