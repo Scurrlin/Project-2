@@ -1,7 +1,5 @@
-# passport-boilerplate
-
-
-This is your passport boilerplate.
+# YSBP-Journal
+A cheeky way to help musicians stay organized!
 
 ## Setup 
 
