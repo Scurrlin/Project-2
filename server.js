@@ -12,7 +12,7 @@ const methodOverride = require('method-override');
 
 const indexRoutes = require('./routes/index');
 const songsRouter = require('./routes/songs');
-const sessionssRouter = require('./routes/rehearsals');
+const rehearsalsRouter = require('./routes/rehearsals');
 
 const myEmitter = new events.EventEmitter();
 
