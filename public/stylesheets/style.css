@@ -1,5 +1,5 @@
 html, body {
-	font-family: 'Papyrus';
+	font-family: 'Garamond';
   color: gold;
 	height: 100%;
 	width: 100%;
@@ -9,7 +9,7 @@ html, body {
 	position: relative;
 	}
 
-.brand-logo {
+/* .brand-logo {
   margin-left: 15px;
 }
 
@@ -28,4 +28,40 @@ html, body {
 
 .collection-item form {
   margin-top: -5px;
+} */
+
+h1 {
+  color: gold;
+  background-position: center;
+  text-align: center;
+  padding-top: 100px;
+}
+
+div {
+  color: gold;
+  text-align: left;
+}
+
+.table {
+  color: gold;
+  text-align: center;
+}
+
+.nav {
+  color: gold;
+}
+
+h2, h3, h4 {
+  color: gold;
+  margin-left: 100px;
+  text-align: left;
+}
+
+#edit-btn{
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+form {
+  margin-left: 100px;
 }

@@ -1,14 +1,14 @@
 <%- include('../partials/header') %> 
 
-<h1> Edit Song</h1>
+<form id="edit-form"></form>
 <form action="/songs/<%= song._id %>/update?_method=PUT" method="POST">
-    <label>Title:</label>
-    <input type="text" name="title">
+    <label>Name:</label>
+    <input type="text" name="name" value="<%= song.name %>">
     <label>Artist:</label>
-    <input type="text" name="artist">
+    <input type="text" name="artist" value="<%= song.artist %>">
     <label>Future Performance?</label>
-    <input type="checkbox" name="futurePerformance" checked>
+    <input type="checkbox" name="futurePerformance" checked value="<%= song.futurePerformance %>">
     <input type="submit" value="Update Song">
 </form>
 
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

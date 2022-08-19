@@ -10,10 +10,11 @@
 </head>
 
 <div class="container">
-  <nav class="navbar navbar-expand-lg bg-light">
-    <% if (user) { %>
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <% if (user) { %>
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">YSBP</a>
+        <p class="navbar-brand" href="#">YSBP</p>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,10 +32,12 @@
       <% } else { %>
             <li class="nav-item">
               <a class="nav-link" href="/auth/google" class="login">LOG IN</a>
-            </li>
-          </ul>  
+            </li>  
       <% } %>
-       </div>
+          </ul>
+        </div>
       </div>
-  </nav>
+    </nav>
+  </div>  
 </div>
+<main>

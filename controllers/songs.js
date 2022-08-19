@@ -31,6 +31,7 @@ function newSong(req, res) {
 
 async function create(req, res) {
   console.log(req.body)
+  req.body.futurePerformance = !!req.body.futurePerformance;
 
   try {
     const songDocumentCreated = await Song.create(req.body)

@@ -1,35 +1,13 @@
 const mongoose = require('mongoose');
 
-const songRehearsalSchema = new mongoose.Schema(
-  {
-  date: {
-    type: Date,
-    default: () => { return new Date() }
-  },
-  feedback: String
-  },
-  {
-    timestamps: true,
-  }
-);
+const songRehearsalSchema = new mongoose.Schema({
+  note: String,
+});
 
 const songSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  artist: {
-      type: String,
-      required: true,
-  },
-  instrument: {
-    type: String,
-    required: true,
-  },
- futurePerformance: {
-    type: Boolean,
-    required: false,
- },
+  name: String,
+  artist: String,
+  futurePerformance: Boolean,
   songRehearsal: [songRehearsalSchema],
 });
 

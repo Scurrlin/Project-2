@@ -1,21 +1,9 @@
-<%- include('../partials/header') %>
+<%- include('./partials/header') %>
 
-<table id="list">
-  <thead>
-    <tr>
-      <th>Songs</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% songs.forEach(function(m) { %>
-      <tr>
-        <td><%= s.name %></td>
-        <td><%= s.artist %></td>
-        <td><a href="/songs/<%= s._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+<div class="block">
+  <div class="head">
+      <h1 class="display-4">🤨 You Should Be Practicing! 🤨</h1>
+  </div>
+</div>
   
-<%- include('../partials/footer') %>
+<%- include('./partials/footer') %>

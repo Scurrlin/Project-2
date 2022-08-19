@@ -1,21 +1,28 @@
 <%- include('../partials/header') %>
 
-<table id="list">
-  <thead>
-    <tr>
-      <th>Songs</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% songs.forEach(function(m) { %>
-      <tr>
-        <td><%= s.name %></td>
-        <td><%= s.artist %></td>
-        <td><a href="/songs/<%= s._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <table class="table" id="main-tb">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Artist</th>
+          <th scope="col">Upcoming Performance?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% songs.forEach(s => { %> 
+          <tr>
+            <td scope="row"><a href="/songs/<%= s._id %>"><%= s.name %></a></td>
+            <td scope="row"><%= s.artist %></td>
+            <td scope="row"><%= s.futurePerformance %></td>
+          </tr>
+        <% }); %> 
+      </tbody>
+    </table>
+  </div>
+</div>
   
 <%- include('../partials/footer') %>
