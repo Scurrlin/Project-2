@@ -1,15 +1,4 @@
-html, body {
-	font-family: 'Garamond';
-  color: gold;
-	height: 100%;
-	width: 100%;
-	background: url("https://source.unsplash.com/HGta5CK1rQw/640x959");
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	}
-
-/* .brand-logo {
+.brand-logo {
   margin-left: 15px;
 }
 
@@ -28,7 +17,18 @@ html, body {
 
 .collection-item form {
   margin-top: -5px;
-} */
+}
+
+/* html, body {
+	font-family: 'Garamond';
+  color: gold;
+	height: 100%;
+	width: 100%;
+	background: url("https://source.unsplash.com/HGta5CK1rQw/640x959");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	}
 
 h1 {
   color: gold;
@@ -64,4 +64,4 @@ h2, h3, h4 {
 
 form {
   margin-left: 100px;
-}
+} */

@@ -24,7 +24,6 @@ After signing in with your Google account, you can make use of the simplified UI
 
 * Add significantly more functionality and relevant fields to songs as well as rehearsal notes
 * Integrate a streaming API to link audio or video recordings of the specific songs
-* Sleep (subject to change)
 
 ## Credits
 
