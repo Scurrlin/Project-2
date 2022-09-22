@@ -1,4 +1,4 @@
-const Song= require('../models/songs');
+const Song = require('../models/songs');
 
 module.exports = {
   create,
@@ -16,8 +16,6 @@ function extractVideoId(url) {
 async function create(req, res) {
   try {
     const songDoc = await Song.findById(req.params.id);
-    // console.log(req.body, '<- req.body: ctrl/videos/create()');
-    // console.log(req.body.url, '<- req.body.url: ctrl/videos/create()');
     req.body.url = extractVideoId(req.body.url);
     songDoc.video.push(req.body);
     await songDoc.save();

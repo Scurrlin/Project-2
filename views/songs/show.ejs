@@ -16,10 +16,10 @@
       <!-- || cover art -->
       <!-- || ================================ || -->
       <div class="col-md-10 offset-md-1 d-flex justify-content-center">
-        <% if (songs.ca) { %>
+        <% if (songs.coverArt) { %>
         <img
           class="rounded mx-auto d-block"
-          src="<%= songs.ca %>"
+          src="<%= songs.coverArt %>"
           alt="cover art"
         />
         <% } else { %>
@@ -28,12 +28,12 @@
       </div>
       <br />
       <!-- || ================================ || -->
-      <!-- || genre -->
+      <!-- || genre, instrument -->
       <!-- || ================================ || -->
       <div class="col-md-10 offset-md-1 d-flex flex-column">
         <div class=""><%= songs.genre %></div>
         <div class="">
-          <% songs.forEach(song => { %> <%= song.name %> <% }) %>
+           <% instruments.forEach(inst => { %> <%= inst.name %> <% }) %>
         </div>
       </div>
       <br />
@@ -129,7 +129,7 @@
       </div>
       <br />
       <!-- || ================================ || -->
-      <!-- || entries table -->
+      <!-- || entrys table -->
       <!-- || ================================ || -->
       <div class="col-md-10 offset-md-1 d-flex justify-content-center">
         <table class="table text-light">
@@ -159,7 +159,7 @@
               <td>
                 <% if (user?._id.equals(elem.user)) { %>
                 <form
-                  action="/entries/<%= elem._id %>?_method=DELETE"
+                  action="/entrys/<%= elem._id %>?_method=DELETE"
                   method="POST"
                 >
                   <button
@@ -183,14 +183,14 @@
       <br />
       <br />
       <!-- || ================================ || -->
-      <!-- || entries submission -->
+      <!-- || entrys submission -->
       <!-- || ================================ || -->
       <div class="form-floating">
         <% if (user) { %>
         <form
           class="col-md-10 offset-md-1"
           id="entry-form"
-          action="/ysbpsongs/<%= songs._id %>/entries"
+          action="/ysbpsongs/<%= songs._id %>/entrys"
           method="POST"
         >
           <textarea
@@ -204,8 +204,9 @@
             placeholder="Document your practice sessions here!"
           ></textarea>
           <br />
-          <input class="btn btn-primary" type="submit" value="Add a entry" />
+          <input class="btn btn-primary" type="submit" value="Add an entry" />
         </form>
+        
         <% } %>
       </div>
       <br />

@@ -20,7 +20,8 @@ const songSchema = new mongoose.Schema({
   name: { type: String, required: true },
   genre: String,
   details: { type: String, maxlength: 750 },
-  ca: String,
+  coverArt: String,
+  instrument: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Instrument' }],
   entry: [entrySchema],
   video: [videoSchema],
 });
