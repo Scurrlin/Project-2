@@ -57,7 +57,7 @@
         </a>
         <div class="collapse" id="keyboards">
           <div class="card card-body">
-            <% keys.forEach(elem => { %>
+            <% keyboards.forEach(elem => { %>
             <a href="/instruments/<%= elem._id %> " class="my-2"><%= elem.name %></a>
             <% }) %>
           </div>
@@ -114,7 +114,7 @@
         </a>
         <div class="collapse" id="percussion">
           <div class="card card-body">
-            <% percussions.forEach(elem => { %>
+            <% percussion.forEach(elem => { %>
             <a href="/instruments/<%= elem._id %> " class="my-2"><%= elem.name %></a>
             <% }) %>
           </div>
@@ -129,11 +129,11 @@
           aria-expanded="false"
           aria-controls="others"
         >
-          Others
+          Other
         </a>
         <div class="collapse" id="others">
           <div class="card card-body">
-            <% others.forEach(elem => { %>
+            <% other.forEach(elem => { %>
             <a href="/instruments/<%= elem._id %> " class="my-2"><%= elem.name %></a>
             <% }) %>
           </div>
@@ -178,7 +178,7 @@
        </div>
     </div>
     <% } else {%>
-    <div class="fw-light text-center">Sign in to create new instrument</div>
+    <div class="fw-light text-center">Sign in to add a new Instrument!</div>
     <br>
     <br>
     <% } %> <%- include('../partials/footer') %>
