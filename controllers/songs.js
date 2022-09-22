@@ -1,9 +1,7 @@
 const Song = require('../models/songs');
-const Instrument = require('../models/instruments');
 
 module.exports = {
   index,
-  newSong,
   create,
   show,
   edit,
@@ -13,24 +11,10 @@ module.exports = {
 
 async function index(req, res) {
   const songDoc = await Song.find();
-  const instDoc = await Instrument.find();
-  // console.log(instDoc, '<- instDoc: ctrl/songs/index()');
   try {
     res.render('../views/songs/index.ejs', {
       songs: songDoc,
-      instruments: instDoc,
       title: 'Song',
-    });
-  } catch (err) {
-    res.send(err);
-  }
-}
-
-async function newSong(req, res) {
-  try {
-    const instDoc = await Instrument.find();
-    res.render('../views/songs/new.ejs', {
-      instruments: instDoc,
     });
   } catch (err) {
     res.send(err);
@@ -49,13 +33,8 @@ async function create(req, res) {
 async function show(req, res) {
   try {
     const songDoc = await Song.findById(req.params.id);
-    const instDoc = await Instrument.find({ _id: songDoc.instrument });
-    // console.log(req.params.id, '<- req.params.id: ctrl/songs/show()');
-    // console.log(instDoc, '<- instDoc: ctrl/music/show()');
-    // console.log(songDoc, '<- songDoc.req.params.id: ctrl/music/show()');
     res.render('../views/songs/show.ejs', {
       songs: songDoc,
-      instruments: instDoc,
     });
   } catch (err) {
     res.send(err);
@@ -78,9 +57,7 @@ async function deleteSong(req, res) {
 async function edit(req, res) {
   try {
     const songDoc = await Song.findById(req.params.id);
-    const instDoc = await Instrument.find();
     res.render('../views/songs/edit.ejs', {
-      instruments: instDoc,
       songs: songDoc,
     });
   } catch (err) {

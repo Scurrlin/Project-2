@@ -1,9 +1,8 @@
 const Song = require('../models/songs');
-const Instrument = require('../models/instruments');
 
 module.exports = {
   create,
-  deleteComment,
+  deleteEntry,
 };
 
 async function create(req, res) {
@@ -16,23 +15,25 @@ async function create(req, res) {
     req.body.userAvatar = req.user.avatar;
     songDoc.comment.push(req.body);
     await songDoc.save();
-    res.redirect(`/ysbpsongs/${req.params.id}`);
+    res.redirect(`/ydbpsongs/${req.params.id}`);
   } catch (err) {
     res.send(err);
   }
 }
 
-async function deleteComment(req, res) {
+async function deleteEntry(req, res) {
   try {
     const songDoc = await Song.findOne({
-      'comment._id': req.params.id,
-      'comment.user': req.user._id,
+      'entry._id': req.params.id,
+      'entry.user': req.user._id,
     });
+    // console.log(req.params.id, '<- req.params.id: deleteEntry');
+    // console.log(songDoc, '<- songDoc: deleteEntry');
 
     if (!songDoc) return res.redirect('/ysbpsongs');
     songDoc.comment.remove(req.params.id);
     await songDoc.save();
-    res.redirect(`/ysbpsongs/${songDoc._id}`);
+    res.redirect(`/ysbp/${songDoc._id}`);
   } catch (err) {
     res.send(err);
   }

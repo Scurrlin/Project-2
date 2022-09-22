@@ -11,8 +11,7 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const songsRouter = require('./routes/songs');
-const instrumentsRouter = require('./routes/instruments');
-const commentsRouter = require('./routes/comments');
+const entriesRouter = require('./routes/entries');
 const videosRouter = require('./routes/videos');
 // create the Express app
 const app = express();
@@ -54,9 +53,9 @@ app.use(function (req, res, next) {
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/ysbpsongs', songsRouter);
-app.use('/', instrumentsRouter);
-app.use('/', commentsRouter);
+app.use('/', entriesRouter);
 app.use('/', videosRouter);
+
 
 // invalid request, send 404 page
 app.use(function (req, res) {

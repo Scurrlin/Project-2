@@ -28,12 +28,12 @@
       </div>
       <br />
       <!-- || ================================ || -->
-      <!-- || genre, instrument -->
+      <!-- || genre -->
       <!-- || ================================ || -->
       <div class="col-md-10 offset-md-1 d-flex flex-column">
         <div class=""><%= songs.genre %></div>
         <div class="">
-          <% instruments.forEach(inst => { %> <%= inst.name %> <% }) %>
+          <% songs.forEach(song => { %> <%= song.name %> <% }) %>
         </div>
       </div>
       <br />
@@ -129,7 +129,7 @@
       </div>
       <br />
       <!-- || ================================ || -->
-      <!-- || comments table -->
+      <!-- || entries table -->
       <!-- || ================================ || -->
       <div class="col-md-10 offset-md-1 d-flex justify-content-center">
         <table class="table text-light">
@@ -137,15 +137,15 @@
             <tr>
               <th>User</th>
               <th>Date</th>
-              <th>Comment</th>
+              <th>Entry</th>
             </tr>
           </thead>
           <tbody class="table text-light">
-            <% if (songs.comment.length) { %>
+            <% if (songs.entry.length) { %>
             <!-- EJS break -->
-            <% songs.comment.forEach(elem => { %>
+            <% songs.entry.forEach(elem => { %>
             <tr>
-              <td class="comment-user">
+              <td class="entry-user">
                 <img
                   alt="avatar"
                   src="<%= elem.userAvatar %>"
@@ -159,7 +159,7 @@
               <td>
                 <% if (user?._id.equals(elem.user)) { %>
                 <form
-                  action="/comments/<%= elem._id %>?_method=DELETE"
+                  action="/entries/<%= elem._id %>?_method=DELETE"
                   method="POST"
                 >
                   <button
@@ -175,7 +175,7 @@
           </tbody>
         </table>
       </div>
-      <% if (!songs.comment.length) { %>
+      <% if (!songs.entry.length) { %>
       <small class="d-flex justify-content-center">
         Document your practice sessions here!
       </small>
@@ -183,14 +183,14 @@
       <br />
       <br />
       <!-- || ================================ || -->
-      <!-- || comments submission -->
+      <!-- || entries submission -->
       <!-- || ================================ || -->
       <div class="form-floating">
         <% if (user) { %>
         <form
           class="col-md-10 offset-md-1"
-          id="comment-form"
-          action="/ysbpsongs/<%= songs._id %>/comments"
+          id="entry-form"
+          action="/ysbpsongs/<%= songs._id %>/entries"
           method="POST"
         >
           <textarea
@@ -204,7 +204,7 @@
             placeholder="Document your practice sessions here!"
           ></textarea>
           <br />
-          <input class="btn btn-primary" type="submit" value="Add a comment" />
+          <input class="btn btn-primary" type="submit" value="Add a entry" />
         </form>
         <% } %>
       </div>
