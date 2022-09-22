@@ -10,9 +10,9 @@ const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
-const musiciansRouter = require('./routes/musicians');
+const songsRouter = require('./routes/songs');
 const instrumentsRouter = require('./routes/instruments');
-const commentsRouter = require('./routes/comments');
+const entrysRouter = require('./routes/entrys');
 const videosRouter = require('./routes/videos');
 // create the Express app
 const app = express();
@@ -53,14 +53,14 @@ app.use(function (req, res, next) {
 
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
-app.use('/jdmusicians', musiciansRouter);
+app.use('/ysbpsongs', songsRouter);
 app.use('/', instrumentsRouter);
-app.use('/', commentsRouter);
+app.use('/', entrysRouter);
 app.use('/', videosRouter);
 
 // invalid request, send 404 page
 app.use(function (req, res) {
-  res.status(404).send("404 Can't touch this!");
+  res.status(404).send("404 Look But Don't Touch!");
 });
 
 module.exports = app;
