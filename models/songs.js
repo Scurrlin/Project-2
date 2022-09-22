@@ -17,7 +17,7 @@ const videoSchema = new mongoose.Schema({
 });
 
 const songSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  artistAndName: { type: String, required: true },
   genre: String,
   details: { type: String, maxlength: 750 },
   coverArt: String,

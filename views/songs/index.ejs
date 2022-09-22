@@ -7,9 +7,9 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="card shadow " style="width: 18rem;">
-            <% if (elem.ca) { %>
+            <% if (elem.coverArt) { %>
               <img 
-              src="<%= elem.ca %>" 
+              src="<%= elem.coverArt %>" 
               class="card-img-top h-50" 
               alt="song's cover art" 
               >
@@ -17,7 +17,7 @@
             <img src="#" class="card-img-top " alt="song's cover art">
             <% } %>
             <div class="card-body">
-              <h5 class="card-title"><%= elem.name %></h5>
+              <h5 class="card-title"><%= elem.artistAndName %></h5>
               <p class="card-text"><%= elem.genre %></p>
               <a href="/ysbpsongs/<%= elem._id %>" class="btn btn-primary">Learn More</a>
             </div>
