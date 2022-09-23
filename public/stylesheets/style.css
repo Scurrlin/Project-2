@@ -19,16 +19,21 @@
   margin-top: -5px;
 }
 
-html, body {
-	font-family: 'Garamond';
+html * {
+  font-family: 'Garamond';
+  color: black
+}
+
+
+body {
 	height: 100%;
 	width: 100%;
 	background: url("https://source.unsplash.com/ZhQCZjr9fHo/1920x1440");
 	/*background-repeat: no-repeat;*/
 	background-size: cover;
 	position: relative;
-	}
+}
 
-  footer {
-   opacity: .1; 
-  }
+footer {
+  opacity: .1; 
+}
