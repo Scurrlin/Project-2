@@ -21,19 +21,21 @@
 
 html * {
   font-family: 'Garamond';
-  color: black
 }
 
 
 body {
 	height: 100%;
 	width: 100%;
-	background: url("https://source.unsplash.com/ZhQCZjr9fHo/1920x1440");
-	/*background-repeat: no-repeat;*/
+  background: url("https://i.imgur.com/UOUSyxn.jpg");
+  /* background: url("https://i.imgur.com/gjkKcUu.jpg");
+	background: url("https://source.unsplash.com/NcdG9mK3PBY/2400x1600"); */
+	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 }
 
 footer {
-  opacity: .1; 
+  justify-content: right;
+  opacity: .6; 
 }
