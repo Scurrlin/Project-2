@@ -15,7 +15,7 @@
           aria-expanded="false"
           aria-controls="vocals"
         >
-          Voice
+          Vocals
         </a>
         <div class="collapse" id="vocals">
           <div class="card card-body">
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div id="nav-string" class="col">
+      <div id="nav-strings" class="col">
         <a
           class="btn btn-warning"
           data-bs-toggle="collapse"
@@ -51,7 +51,7 @@
           href="#keyboards"
           role="button"
           aria-expanded="false"
-          aria-controls="keys"
+          aria-controls="keyboards"
         >
           Keyboards
         </a>
@@ -131,7 +131,7 @@
         >
           Other
         </a>
-        <div class="collapse" id="others">
+        <div class="collapse" id="other">
           <div class="card card-body">
             <% other.forEach(elem => { %>
             <a href="/instruments/<%= elem._id %> " class="my-2"><%= elem.name %></a>
@@ -161,14 +161,14 @@
       </div>
       <div class="col-md-6 offset-md-3">
           Type:
-          <select name="type" id="country-select" class="form-select">
-            <option value="vocal">Voice</option>
-            <option value="string">Strings</option>
+          <select name="type" id="genre-select" class="form-select">
+            <option value="vocals">Vocals</option>
+            <option value="strings">Strings</option>
             <option value="brass">Brass</option>
-            <option value="woodwind">Woodwinds</option>
-            <option value="keys">Keyboards</option>
+            <option value="woodwinds">Woodwinds</option>
+            <option value="keyboards">Keyboards</option>
             <option value="percussion">Percussion</option>
-            <option value="others">Others</option>
+            <option value="other">Other</option>
           </select>
           <br>
           <input type="submit" class="btn btn-primary" value="Add a new instrumet" />
