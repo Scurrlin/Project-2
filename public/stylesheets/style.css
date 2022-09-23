@@ -21,11 +21,14 @@
 
 html, body {
 	font-family: 'Garamond';
-  color: gold;
 	height: 100%;
 	width: 100%;
 	background: url("https://source.unsplash.com/ZhQCZjr9fHo/1920x1440");
-	background-repeat: no-repeat;
+	/*background-repeat: no-repeat;*/
 	background-size: cover;
 	position: relative;
 	}
+
+  footer {
+   opacity: .1; 
+  }
