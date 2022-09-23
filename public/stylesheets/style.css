@@ -19,12 +19,12 @@
   margin-top: -5px;
 }
 
-/* html, body {
+html, body {
 	font-family: 'Garamond';
   color: gold;
 	height: 100%;
 	width: 100%;
-	background: url("https://source.unsplash.com/HGta5CK1rQw/640x959");
+	background: url("https://source.unsplash.com/ZhQCZjr9fHo/640x480"); /*1920x1440*/
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
@@ -64,4 +64,4 @@ h2, h3, h4 {
 
 form {
   margin-left: 100px;
-} */
+}
